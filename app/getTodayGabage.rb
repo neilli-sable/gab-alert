@@ -2,9 +2,7 @@ module GabAlert
   class GetTodayGabage
 
     # 実行することで他のメソッドを呼び出し、ゴミの種類を返す。
-    def name
-      time = Time.now
-
+    def name(time=Time.now)
       ex = exceptionCheck(time)
       if ex.nil?
         day_and_count = getDayAndCount(time)
@@ -57,14 +55,14 @@ module GabAlert
       return "ごみ回収はない"
     end
 
-    # 1月の三が日はゴミ回収がないので、それに関連した例外チェック
+    # 1月の三が日ゴミ回収が特殊ないので、それに関連した例外チェック
     # ゴミの種類を返す。
     def exceptionCheck(time)
       if time.month === 1
-        if time.day <= 3
+        if time.day <= 2 
           return "ごみ回収はない"
         end
-        if time.day === 4 && time.wday = 6
+        if time.day === 3 && time.wday === 6
           return "燃えるごみ"
         end
       end
