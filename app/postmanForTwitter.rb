@@ -1,5 +1,5 @@
 require 'twitter'
-require __dir__ + '/getTodayGabage.rb'
+require __dir__ + '/GetTodayGabage.rb'
 
 module GabAlert
   class PostmanForTwitter
