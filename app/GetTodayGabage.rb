@@ -7,9 +7,8 @@ module GabAlert
       if ex.nil?
         day_and_count = getDayAndCount(time)
         return checkTrashByDayAndCount(day_and_count[:day], day_and_count[:count])
-      else
-        return ex
       end
+      return ex
     end
 
     private
@@ -18,6 +17,13 @@ module GabAlert
     def getDayAndCount(time)
       day = time.wday
       count = ((time.day - 1) / 7) + 1
+
+      if (time.month === 1 &&
+        (time.day % 7 === 1 || time.day % 7 === 2)
+        )
+        count -= 1
+      end
+
       return {day: day, count: count}
     end
 
@@ -55,19 +61,22 @@ module GabAlert
       return "ごみ回収はない"
     end
 
-    # 1月の三が日ゴミ回収が特殊ないので、それに関連した例外チェック
+    # 1月のゴミ回収が特殊なので、それに関連した例外チェック
     # ゴミの種類を返す。
     def exceptionCheck(time)
       if time.month === 1
-        if time.day <= 2 
-          return "ごみ回収はない"
-        end
+        # 三が日で金曜日が収集なしになった場合、土曜日に燃えるごみ
         if time.day === 3 && time.wday === 6
           return "燃えるごみ"
         end
-      end
 
-      return nil
+        if time.day <= 2
+          return "ごみ回収はない"
+        end
+
+        return nil
+      end
     end
+
   end
 end
