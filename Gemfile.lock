@@ -3,6 +3,7 @@ GEM
   specs:
     addressable (2.3.6)
     buftok (0.2.0)
+    dotenv (1.0.2)
     equalizer (0.0.9)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
@@ -10,11 +11,15 @@ GEM
       http_parser.rb (~> 0.6.0)
     http_parser.rb (0.6.0)
     json (1.8.1)
+    mail (2.6.1)
+      mime-types (>= 1.16, < 3)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
+    mime-types (2.4.3)
     multipart-post (2.0.0)
     naught (1.0.0)
     simple_oauth (0.3.0)
+    smtpapi (0.0.8)
     thread_safe (0.3.4)
     twitter (5.13.0)
       addressable (~> 2.3)
@@ -32,4 +37,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  dotenv
+  mail
+  smtpapi
   twitter
