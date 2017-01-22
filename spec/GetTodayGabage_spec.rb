@@ -1,5 +1,5 @@
 require 'timecop'
-require __dir__ + '/../GetTodayGabage.rb'
+require __dir__ + '/../app/GetTodayGabage.rb'
 
 describe GabAlert::GetTodayGabage, "when Proceed" do
   before do
