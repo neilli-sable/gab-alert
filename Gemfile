@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.2'
+ruby '2.4.0'
 gem 'twitter'
 gem 'mail'
 gem 'dotenv'
