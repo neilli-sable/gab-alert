@@ -15,13 +15,17 @@ module GabAlert
 
     # timeオブジェクトを受け取って、曜日と第何週かを返す。
     def getDayAndCount(time)
-      day = time.wday
-      count = ((time.day - 1) / 7) + 1
+      adjustDay = time.day
+      if (time.month === 1)
+        # 3が日分、ズラす
+        adjustDay = time.day - 3
+      end
 
-      if (time.month === 1 &&
-        (time.day % 7 === 1 || time.day % 7 === 2)
-        )
-        count -= 1
+      day = time.wday
+      count = ((adjustDay - 1) / 7) + 1
+
+      if (time.month === 1)
+
       end
 
       return {day: day, count: count}
@@ -65,17 +69,29 @@ module GabAlert
     # ゴミの種類を返す。
     def exceptionCheck(time)
       if time.month === 1
-        # 三が日で金曜日が収集なしになった場合、土曜日に燃えるごみ
-        if time.day === 3 && time.wday === 6
+        if time.day === 3
           return "燃えるごみ"
         end
 
         if time.day <= 2
           return "ごみ回収はない"
         end
-
-        return nil
       end
+
+      if time.month === 12
+        if time.day === 29
+          return "燃えるごみ"
+        end
+
+        if time.day === 30
+          return "ごみ回収はない"
+        end
+
+        if time.day === 29
+          return "ごみ回収はない"
+        end
+      end
+      return nil
     end
 
   end
