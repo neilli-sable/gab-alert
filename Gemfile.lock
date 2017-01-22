@@ -21,6 +21,7 @@ GEM
     simple_oauth (0.3.0)
     smtpapi (0.0.8)
     thread_safe (0.3.4)
+    timecop (0.8.1)
     twitter (5.13.0)
       addressable (~> 2.3)
       buftok (~> 0.2.0)
@@ -40,4 +41,11 @@ DEPENDENCIES
   dotenv
   mail
   smtpapi
+  timecop
   twitter
+
+RUBY VERSION
+   ruby 2.1.2p95
+
+BUNDLED WITH
+   1.14.1
